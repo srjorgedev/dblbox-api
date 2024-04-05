@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "API para el videojuego movil Dragon Ball Legends. Creado con el objetivo de mostrar datos de personajes.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "test"
   },
