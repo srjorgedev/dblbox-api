@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "app": "node --watch src/app.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   },
   "homepage": "https://github.com/srjorgedev/dblbox-api#readme",
   "dependencies": {
+    "@supabase/supabase-js": "2.42.0",
     "axios": "1.6.8",
     "cheerio": "1.0.0-rc.12",
     "express": "4.19.2"
