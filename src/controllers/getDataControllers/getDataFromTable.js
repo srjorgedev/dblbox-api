@@ -31,13 +31,14 @@ export async function getFromTableByQuery(table, column, query) {
         const { data, error } = await Supabase
             .from(table)
             .select('*')
+            .eq(column, query)
 
         if (error) throw new Error(error.message)
         if (data.length <= 0) throw new Error(`Tabla ${table} sin datos.`)
 
         return {
             status: 'Ok',
-            data: data,
+            data: data[0],
             error: false,
             errorMessage: null
         }
