@@ -1,4 +1,4 @@
-import Supabase from "../../database/connection"
+import Supabase from "../../database/connection.js"
 
 export async function getAllFromTable(table) {
     try {
@@ -7,11 +7,16 @@ export async function getAllFromTable(table) {
             .select('*')
 
         if (error) throw new Error(error.message)
-        if (data[0].length <= 0) throw new Error(`Tabla ${table} sin datos.`)
+        if (data.length <= 0) throw new Error(`Tabla ${table} sin datos.`)
 
-        return data
+        return {
+            status: 'Ok',
+            data: data,
+            error: false,
+            errorMessage: null
+        }
     }
-    catch (error) { 
+    catch (error) {
         return {
             status: 'Fail',
             data: 'Ha ocurrido un error',
@@ -28,11 +33,16 @@ export async function getFromTableByQuery(table, column, query) {
             .select('*')
 
         if (error) throw new Error(error.message)
-        if (data[0].length <= 0) throw new Error(`Tabla ${table} sin datos.`)
+        if (data.length <= 0) throw new Error(`Tabla ${table} sin datos.`)
 
-        return data
+        return {
+            status: 'Ok',
+            data: data,
+            error: false,
+            errorMessage: null
+        }
     }
-    catch (error) { 
+    catch (error) {
         return {
             status: 'Fail',
             data: 'Ha ocurrido un error',

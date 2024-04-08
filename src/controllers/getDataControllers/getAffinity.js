@@ -1,19 +1,17 @@
-import Supabase from '../../database/connection.js'
-import tables from '../../database/tables.js'
+import tables, { columns } from '../../database/tables.js'
+import { getAllFromTable, getFromTableByQuery } from './getDataFromTable.js'
 
 export async function getAllAffinity() {
     try {
-        const { data, error } = await Supabase
-            .from(tables.dataAffinity)
-            .select('*')
+        const { data, error, errorMessage, status } = await getAllFromTable(tables.dataAffinity)
 
-        if (error) {
-            throw new Error(error.message)
+        if (error || status === 'Fail', data.length <= 0) {
+            throw new Error(errorMessage)
         }
 
         return (
             {
-                status: 'Success',
+                status: 'Ok',
                 error: false,
                 data: data,
                 errorMessage: null
@@ -32,18 +30,15 @@ export async function getAllAffinity() {
 
 export async function getAffinityById(id) {
     try {
-        const { data, error } = await Supabase
-            .from(tables.dataAffinity)
-            .select('*')
-            .eq('id', id)
+        const { data, error, errorMessage, status } = await getFromTableByQuery(tables.dataAffinity, columns.data.id, id)
 
-        if (error) {
-            throw new Error(error.message)
+        if (error || status === 'Fail', data.length <= 0) {
+            throw new Error(errorMessage)
         }
 
         return (
             {
-                status: 'Success',
+                status: 'Ok',
                 error: false,
                 data: data,
                 errorMessage: null
