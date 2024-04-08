@@ -1,14 +1,12 @@
-import Supabase from '../../database/connection.js'
-import tables from '../../database/tables.js'
+import { getAllFromTable, getFromTableByQuery } from './getDataFromTable.js'
+import tables, {columns} from '../../database/tables.js'
 
 export async function getAllChapter() {
     try {
-        const { data, error } = await Supabase
-            .from(tables.dataChapter)
-            .select('*')
+        const { data, error, errorMessage, status } = await getAllFromTable(tables.dataChapter)
 
-        if (error) {
-            throw new Error(error.message)
+        if (error, status === 'Fail') {
+            throw new Error(errorMessage)
         }
 
         return (
@@ -32,13 +30,10 @@ export async function getAllChapter() {
 
 export async function getChapterById(id) {
     try {
-        const { data, error } = await Supabase
-            .from(tables.dataChapter)
-            .select('*')
-            .eq('id', id)
+        const { data, error, status, errorMessage } = await getFromTableByQuery(tables.dataChapter, columns.data.id, id)
 
-        if (error) {
-            throw new Error(error.message)
+        if (error, status === 'Fail') {
+            throw new Error(errorMessage)
         }
 
         return (
