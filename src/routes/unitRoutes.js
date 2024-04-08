@@ -12,3 +12,5 @@ Router.post('/post/unit', async (req, res) => {
         res.json('Error')
     }
 })
+
+export default Router
