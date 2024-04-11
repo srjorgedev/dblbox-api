@@ -31,9 +31,6 @@ export type postAbilityUnit = {
 
 export type postAbilityZenkaiUnit = {
     unit_id: string,
-    z_ability: string[],
-    z_limited_ability: string[],
-    ultra_ability: string[],
     main_ability: string[],
     p_ability_one: string[],
     p_ability_two: string[],

@@ -5,6 +5,7 @@ export async function getAllFromTable(table) {
         const { data, error } = await Supabase
             .from(table)
             .select('*')
+            .order('unit_id', { ascending: false })
 
         if (error) throw new Error(error.message)
         if (data.length <= 0) throw new Error(`Tabla ${table} sin datos.`)
